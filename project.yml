@@ -1,0 +1,62 @@
+name: PocketIOS
+options:
+  developmentLanguage: ja
+  minimumXcodeGenVersion: 2.44.1
+  deploymentTarget:
+    iOS: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+    CODE_SIGNING_ALLOWED: NO
+    DEVELOPMENT_TEAM: ""
+    TARGETED_DEVICE_FAMILY: "1"
+targets:
+  PocketIOS:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.miyazaki.pocket
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1"
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDevelopmentRegion: ja
+        CFBundleLocalizations: [ja]
+        CFBundleDisplayName: ポケット
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "1"
+        ITSAppUsesNonExemptEncryption: false
+        CFBundleURLTypes:
+          - CFBundleURLName: dev.miyazaki.pocket
+            CFBundleURLSchemes: [pocketios]
+        NSCameraUsageDescription: PC のペアリング QR を読み取るためにカメラを使います。
+        LSApplicationQueriesSchemes: [tailscale]
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+  PocketIOSTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests]
+    dependencies:
+      - target: PocketIOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.miyazaki.pocket.tests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  PocketIOS:
+    build:
+      targets:
+        PocketIOS: all
+        PocketIOSTests: [test]
+    test:
+      targets: [PocketIOSTests]
+      gatherCoverageData: true

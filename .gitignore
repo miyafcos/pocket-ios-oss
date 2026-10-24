@@ -1,0 +1,17 @@
+build/
+.build/
+DerivedData/
+PocketIOS.xcodeproj/
+.env
+.env.*
+*.p12
+*.mobileprovision
+.sync-history/
+__pycache__/
+*.xcuserstate
+xcuserdata/
+.DS_Store
+._*
+
+# Operational ledgers and dispatch notes kept beside the code, not in it.
+_dispatch/
